@@ -1,0 +1,33 @@
+<div>
+    <label for="departmentId">Department ID:</label>
+    <input type="text" id="departmentId" [(ngModel)]="departmentId" />
+    <button (click)="searchEmployees()">Search</button>
+  </div>
+  
+  <table *ngIf="dep?.employees?.length>0">
+    <thead>
+        <tr  class="dep">
+            <td>DEP Id:{{ dep.id }}</td>
+            <td>Dep name: {{ dep.name }}</td>
+            <td colspan="2"> Dep location: {{ dep.location }}</td>
+            
+          </tr>
+      <tr>
+        <th>Employee ID</th>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of dep.employees">
+        <td>{{ employee.id }}</td>
+        <td>{{ employee.name }}</td>
+        <td>{{ employee.location }}</td>
+        <td>
+          <a routerLink="/employee/{{ employee.id }}" (click)="setEmpData(employee)">Details</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
